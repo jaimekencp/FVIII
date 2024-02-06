@@ -1,0 +1,60 @@
+## Goal of this task
+
+This task serves as an example project for data commonly encountered within the 
+pharmacometrics literature. Although we rarely encounter data sets of around 
+500 subjects 'in the wild', we want to encourage the applicant to be creative.
+Importantly, the goal is not to produce the most accurate model given the data, 
+but rather to try to find creative ways of dealing with the data and to think 
+about the clinical use-case for the model you will be developing.
+
+## Project description
+
+You are tasked by your department to figure out how to deal with high variability 
+in drug exposure between the haemophilia A patients in your hospital. At the 
+moment, all patients receive a similar dose per kilogram of body weight. Your 
+treatment center has spend the last precious years collecting a large data set 
+of patients who received a single dose of one of three factor VIII (FVIII) 
+concentrates. After the dose, FVIII activity was measured at three time points 
+after the dose. Information on patient characteristics is available and the 
+clinicians have requested you find out what markers are important determinants of 
+low drug exposure or short drug half-life. Your plan is to create a model to 
+predict the drug activity levels after the dose, and try to find out how to 
+covariates affect the exposure. After you model is completed, you will report 
+your findings to the clinicians so that they can make a decision on how they can 
+adapt the treatment of these patients for better outcomes. Be mindfull that you 
+should produce results that can be interpreted by the clinicians.
+
+## Requirements
+
+Don't worry, we won't force you to write your code in a specific or obscure 
+language. Use any language that is most comfortable to you, be it R, Python, or 
+Matlab. We do ask the following things:
+
+* Your code should be easy to understand. We often collaborate on projects, and 
+it is useful to understand what others did by reading eachother's code. 
+
+* Document your progress and thoughts during the project. Don't just hand in the 
+training code; we encourage you to also show your data exploration code, figures, 
+and thoughts as you move through model iterations. Tools such as Rmarkdown or 
+jupyter can be a nice way to combine code and text.
+
+* Don't spend every ounce of free time you have the coming week on the project. 
+Try to aim for roughly 6 hours of work. You are of course welcome to spend more 
+time on the project if it interests you; but don't feel like we would expect 
+world class performance in terms of state-of-the-art machine learning algorithms 
+implemented by hand.
+
+## About the data
+
+The data set contains a total of 500 subjects with severe haemophilia A. It 
+contains information on measured factor VIII activity levels 
+(dv column; unit = IU/mL), the time point of a dose 
+(at t = 0; amt column, unit = IU) or measurement, and information on the 
+infusion time of each dose (duration column). The mdv column indicates whether 
+the current row has a missing value for the dependent variable 
+(i.e. mdv = 0 -> measurement taken, mdv = 1 -> dose administered). Several 
+covariates are available: subject age (age column), height (ht), weight (wt), 
+whether the patient has blood group O (bgo column, 0 = false, 1 = true), 
+von Willebrand factor levels (vwf), brandname of FVIII concentrate 
+(product column), and the specific FVIII mutation identified to result in the 
+disease (mutation).  
