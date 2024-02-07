@@ -45,6 +45,39 @@ class ImplementMachineLearning():
 
         return X_train, X_test, y_train, y_test
     
+    def feature_selection(self, X, y, n_features=10):
+        """
+        Perform feature selection using a Random Forest Regressor.
+        
+        Parameters:
+        - X: pd.DataFrame, feature matrix with each column being a feature.
+        - y: pd.Series or np.array, target variable (in this case, "half-life").
+        - n_features: int, number of top features to select.
+        
+        Returns:
+        - selected_features: List of the top n_features based on importance.
+        """
+
+        # Split the data into training and testing sets for feature evaluation
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+        
+        # Initialize the Random Forest Regressor
+        rf = RandomForestRegressor(n_estimators=100, random_state=42)
+        
+        # Fit the model
+        rf.fit(X_train, y_train)
+        
+        # Get feature importances
+        importances = rf.feature_importances_
+        
+        # Sort the feature importances in descending order and select the top n_features
+        indices = np.argsort(importances)[::-1]
+        selected_features = [X.columns[i] for i in indices[:n_features]]
+
+        return selected_features
+
+
+    
     def linear_regression(self, X_train, X_test, y_train, y_test):
         """
         This function fits a linear regression model to the data and returns the mean squared error and R^2 score.

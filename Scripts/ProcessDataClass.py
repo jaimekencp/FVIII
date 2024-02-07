@@ -126,3 +126,10 @@ class ProcessData():
         This function drops the rows with missing values.
         """
         self.df.dropna(inplace=True)
+
+    def normalize_data(self):
+        """
+        This function normalizes the data using the min-max scaling method. This is done to ensure that the data is in a format that can be used for machine learning model implementation.
+        """
+        self.df = (self.df - self.df.min()) / (self.df.max() - self.df.min())
+        self.df.fillna(0, inplace=True)

@@ -21,6 +21,8 @@ def process_data_for_modeling(df):
 
     process_data.drop_na()
 
+    process_data.normalize_data()
+
     return process_data.df
 
 def machine_learning_models(df):
@@ -30,6 +32,11 @@ def machine_learning_models(df):
     df_implement_machine_learning.find_correlated_features()
 
     X_train, X_test, y_train, y_test = df_implement_machine_learning.split_data()
+
+    top_10_features = df_implement_machine_learning.feature_selection(df.drop(columns='half_life'), df['half_life'])
+
+    X_train = X_train[top_10_features]
+    X_test = X_test[top_10_features]
 
     # Linear Regression
     linear_mse, linear_r2, linear_model_coefs = df_implement_machine_learning.linear_regression(X_train, X_test, y_train, y_test)
